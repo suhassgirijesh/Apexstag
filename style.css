@@ -1262,7 +1262,8 @@ body.bottom-nav {
 @media (max-width: 992px) {
     .nav-menu {
         position: fixed;
-        top: 74px;
+        bottom: 90px;
+        top: auto;
         left: 5%;
         right: 5%;
         z-index: 1001;
