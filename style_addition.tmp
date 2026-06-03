@@ -1,0 +1,94 @@
+
+/* Final mobile cleanup override for all pages */
+@media (max-width: 900px) {
+    .navbar {
+        bottom: 24px;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(1180px, calc(100% - 44px));
+        border-radius: 999px;
+    }
+
+    .nav-menu {
+        position: fixed;
+        bottom: 90px;
+        left: 5%;
+        right: 5%;
+        max-height: 0;
+        overflow: hidden;
+        border: 1px solid rgba(200, 155, 60, .24);
+        border-radius: 16px;
+        background: rgba(7, 21, 46, .98);
+        box-shadow: 0 28px 80px rgba(7, 21, 46, .18);
+        transition: max-height .35s ease;
+        z-index: 1200;
+    }
+
+    .nav-menu.open {
+        max-height: 460px;
+    }
+
+    .nav-links {
+        display: grid;
+        gap: 0;
+        padding: 16px;
+    }
+
+    .nav-links li a {
+        display: block;
+        padding: 14px 16px;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+    }
+
+    .nav-cta {
+        display: none;
+    }
+
+    .hero-container,
+    .split-grid,
+    .service-detail,
+    .form-grid,
+    .contact-layout,
+    .industry-panel-grid,
+    .mission-grid,
+    .founder-grid,
+    .services-grid,
+    .value-grid,
+    .benefits-grid,
+    .positions-grid,
+    .industry-grid,
+    .feature-list,
+    .contact-info-grid,
+    .process-wrapper,
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .hero-visual img,
+    .split-media img,
+    .image-panel img {
+        min-height: 220px;
+    }
+
+    .home-hero,
+    .page-hero {
+        padding: 70px 0 48px;
+        min-height: auto;
+    }
+
+    .page-hero-content {
+        gap: 20px;
+    }
+
+    .section {
+        padding: 56px 0;
+    }
+
+    .section-heading {
+        margin-bottom: 42px;
+    }
+}
