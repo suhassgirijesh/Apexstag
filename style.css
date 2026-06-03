@@ -799,6 +799,174 @@ body.bottom-nav {
     line-height: 1.25;
 }
 
+/* =========================
+   RESPONSIVE RULES
+========================= */
+
+/* Tablet and smaller: move navbar to top, enable mobile menu */
+@media (max-width: 900px) {
+    .navbar {
+        bottom: auto;
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        border-radius: 0;
+        padding: 12px 16px;
+    }
+
+    .nav-container {
+        gap: 12px;
+    }
+
+    .brand img {
+        width: 160px;
+        max-height: 56px;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 16px;
+        background: rgba(7,21,46,0.96);
+        border-radius: 8px;
+        padding: 12px;
+        flex-direction: column;
+        gap: 12px;
+        min-width: 180px;
+        box-shadow: 0 12px 30px rgba(7,21,46,0.3);
+    }
+
+    .nav-menu.open .nav-links {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+    }
+
+    .nav-cta {
+        display: none;
+    }
+
+    .container {
+        width: min(94%, 1100px);
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 28px 0;
+    }
+
+    .hero-visual img,
+    .split-media img,
+    .image-panel img {
+        min-height: 260px;
+    }
+
+    .services-grid,
+    .value-grid,
+    .benefits-grid,
+    .positions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .industry-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile: stack content, reduce paddings */
+@media (max-width: 600px) {
+    .container {
+        width: min(96%, 960px);
+    }
+
+    .section {
+        padding: 48px 0;
+    }
+
+    .hero.home-hero {
+        min-height: 60vh;
+        padding: 40px 0 60px;
+    }
+
+    .hero h1 {
+        font-size: clamp(28px, 6vw, 40px);
+    }
+
+    .page-hero {
+        padding: 60px 0 48px;
+    }
+
+    .split-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .services-grid,
+    .value-grid,
+    .benefits-grid,
+    .positions-grid,
+    .industry-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .brand img {
+        width: 140px;
+        max-height: 48px;
+    }
+
+    .testimonial-card {
+        padding: 28px;
+        min-height: auto;
+    }
+
+    .hero-visual img,
+    .split-media img,
+    .image-panel img {
+        min-height: 180px;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .form-panel {
+        width: 100%;
+        padding: 20px;
+    }
+
+    /* hide large decorative glows/overlays on small screens to avoid blocking content */
+    .hero::after,
+    .page-hero::after,
+    .hero-cursor-glow {
+        display: none;
+    }
+}
+
+/* Small desktops / laptops: moderate widths */
+@media (min-width: 901px) and (max-width: 1366px) {
+    .container {
+        width: min(92%, 1200px);
+    }
+
+    .services-grid,
+    .value-grid,
+    .benefits-grid,
+    .positions-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .industry-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 .testimonial-card h4 {
     margin-top: 28px;
     color: var(--primary);
