@@ -345,31 +345,7 @@ body.bottom-nav {
     padding: 80px 0 120px;
 }
 
-.hero::after,
-.page-hero::after {
-    content: "";
-    position: absolute;
-    right: 7%;
-    top: 16%;
-    width: 480px;
-    height: 480px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(200, 155, 60, .16), rgba(200, 155, 60, 0) 65%);
-    pointer-events: none;
-}
-
-.hero-cursor-glow {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 360px;
-    height: 360px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(200, 155, 60, .12), rgba(200, 155, 60, 0) 66%);
-    transform: translate3d(calc(var(--x, 50%) - 180px), calc(var(--y, 50%) - 180px), 0);
-    pointer-events: none;
-    will-change: transform;
-}
+/* Decorative hero overlays removed to avoid blocking content on small viewports */
 
 .hero-container {
     position: relative;
@@ -805,16 +781,6 @@ body.bottom-nav {
 
 /* Tablet and smaller: move navbar to top, enable mobile menu */
 @media (max-width: 900px) {
-    .navbar {
-        bottom: auto;
-        top: 0;
-        left: 0;
-        transform: none;
-        width: 100%;
-        border-radius: 0;
-        padding: 12px 16px;
-    }
-
     .nav-container {
         gap: 12px;
     }
@@ -826,16 +792,24 @@ body.bottom-nav {
 
     .nav-links {
         display: none;
-        position: absolute;
-        top: 100%;
-        right: 16px;
-        background: rgba(7,21,46,0.96);
-        border-radius: 8px;
+        position: fixed; /* make independent of container to avoid clipping */
+        /* place the menu above the floating bottom navbar */
+        bottom: calc(72px + 12px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(7,21,46,0.98);
+        border-radius: 12px;
         padding: 12px;
         flex-direction: column;
-        gap: 12px;
-        min-width: 180px;
-        box-shadow: 0 12px 30px rgba(7,21,46,0.3);
+        gap: 8px;
+        min-width: 220px;
+        max-width: calc(100% - 40px);
+        box-shadow: 0 18px 40px rgba(7,21,46,0.45);
+        z-index: 2200;
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .22s ease, transform .22s ease, visibility .22s;
     }
 
     .nav-menu.open .nav-links {
@@ -844,6 +818,32 @@ body.bottom-nav {
 
     .menu-toggle {
         display: inline-flex;
+    }
+
+    /* ensure nav-menu is the positioned ancestor for the dropdown */
+    .nav-menu {
+        position: relative;
+    }
+
+    .nav-links li a {
+        display: block;
+        padding: 10px 14px;
+        color: var(--white);
+        font-weight: 700;
+    }
+
+    /* force visible when open */
+    .nav-menu.open .nav-links {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: translateX(-50%) translateY(0) !important;
+    }
+
+    .menu-toggle {
+        z-index: 2300;
+        position: relative;
     }
 
     .nav-cta {
@@ -860,6 +860,26 @@ body.bottom-nav {
         padding: 28px 0;
     }
 
+    /* hide decorative hero overlays on small and tablet screens */
+    .hero::after,
+    .page-hero::after,
+    .hero-cursor-glow {
+        display: none;
+    }
+
+
+/* Strong override for narrower viewports in case of caching or specificity issues */
+@media (max-width: 1200px) {
+    .hero::after,
+    .page-hero::after,
+    .hero-cursor-glow {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translate3d(0,0,0) scale(0) !important;
+        pointer-events: none !important;
+    }
+}
     .hero-visual img,
     .split-media img,
     .image-panel img {

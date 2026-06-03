@@ -12,7 +12,6 @@ const progress = document.querySelector(".scroll-progress");
 const menuToggle = document.querySelector(".menu-toggle");
 const navMenu = document.querySelector(".nav-menu");
 const hero = document.querySelector(".hero");
-const heroGlow = document.querySelector(".hero-cursor-glow");
 
 const updateScrollEffects = () => {
     const scrollTop = window.scrollY;
@@ -53,13 +52,7 @@ if (menuToggle && navMenu) {
     });
 }
 
-if (hero && heroGlow) {
-    hero.addEventListener("mousemove", (event) => {
-        const rect = hero.getBoundingClientRect();
-        heroGlow.style.setProperty("--x", `${event.clientX - rect.left}px`);
-        heroGlow.style.setProperty("--y", `${event.clientY - rect.top}px`);
-    });
-}
+// hero glow removed — no mousemove handler needed
 
 document.querySelectorAll('a[href]:not([href^="#"])').forEach((link) => {
     link.addEventListener("click", (event) => {
